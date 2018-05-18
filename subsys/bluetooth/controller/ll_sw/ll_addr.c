@@ -11,6 +11,7 @@
 #include <bluetooth/hci.h>
 #include <bluetooth/crypto.h>
 #include <misc/slist.h>
+#include <soc.h>
 
 #include "util/util.h"
 
@@ -74,7 +75,7 @@ void ll_addr_init(void)
 {
 	u8_t mac[BDADDR_SIZE] = {0};
 
-#if defined(CONFIG_SOC_FAMILY_NRF5)
+#if defined(CONFIG_SOC_FAMILY_NRF)
 	/* Read address from nRF5-specific storage */
 	mac[0] = (NRF_FICR->DEVICEADDR[0] >> 0)  & 0xff;
 	mac[1] = (NRF_FICR->DEVICEADDR[0] >> 8)  & 0xff;
