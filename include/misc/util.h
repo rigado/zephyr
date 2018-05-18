@@ -105,6 +105,28 @@ static inline s64_t arithmetic_shift_right(s64_t value, u8_t shift)
 	return (value >> shift) | (sign_ext << (64 - shift));
 }
 
+static inline int buffer_all_equal(u8_t const * const p_data, const u32_t length, const u8_t byte)
+{
+	//1 for buffer all equal to byte, 0 otherwise
+	int result = 0;
+
+	if(p_data && length)
+	{
+		result = 1;
+
+		for(u32_t i = 0; i < length; i++)
+		{
+			if(p_data[i] != byte)
+			{
+				result = 0;
+				break;
+			}
+		}
+	}
+
+	return result;
+}
+
 #endif /* !_ASMLANGUAGE */
 
 /* KB, MB, GB */
