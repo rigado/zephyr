@@ -622,8 +622,10 @@ static void read_bd_addr(struct net_buf *buf, struct net_buf **evt)
 
 	rp = cmd_complete(evt, sizeof(*rp));
 
-	rp->status = 0x00;
-	ll_addr_get(0, &rp->bdaddr.val[0]);
+	//request public addr, but this will actually give the static address of no public addr is set.
+ 	ll_addr_get(0, &rp->bdaddr.val[0]);
+
+	rp->status = BT_HCI_ERR_SUCCESS; 
 }
 
 static int info_cmd_handle(u16_t  ocf, struct net_buf *cmd,

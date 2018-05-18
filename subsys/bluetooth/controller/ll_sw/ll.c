@@ -202,6 +202,9 @@ int ll_init(struct k_sem *sem_rx)
 	irq_enable(NRF5_IRQ_SWI4_IRQn);
 	irq_enable(NRF5_IRQ_RNG_IRQn);
 
+	//must be after NRF5_IRQ_RNG_IRQn enable!
+	ll_addr_init();
+
 	return 0;
 }
 
